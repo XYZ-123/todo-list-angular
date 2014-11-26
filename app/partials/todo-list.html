@@ -1,0 +1,7 @@
+<ul class="todos">
+	<li ng-repeat="todo in todos">
+		<p>{{todo.status}}</p>
+		<a href="#/todos/{{todo.id}}">{{todo.title}}</a>
+		<p>{{todo.importance}}</p>
+	</li>
+</ul>
