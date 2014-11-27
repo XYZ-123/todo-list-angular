@@ -28,3 +28,45 @@
   content: "";
   padding: 0;
 }
+p.edit:hover
+{
+	cursor:pointer;
+}
+p.edit:before
+{
+	content: "";
+	display: block;
+	background-image: url("../img/pencil.png");
+	background-size: 100%;
+	height: 30px;
+	width: 30px;
+}
+ul.todos
+{
+	max-width: 30em;
+	margin: 50px auto;
+	
+}
+ul.todos li
+{
+	display:block;
+	height: 40px;
+	line-height: 40px;
+	verticak-align: middle;
+}
+ul.todos li p 
+{
+	line-height: 40px;
+	vertical-align: middle;
+	float:left;
+	margin: 0 1em;
+}
+ul.todos li p.edit{float:right;}
+ul.todos li a
+{
+line-height: 40px;
+vertical-align: middle;
+	float:left;
+	margin: 0 1em;
+}
+
