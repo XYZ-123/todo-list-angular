@@ -8,14 +8,16 @@ todoAppControllers.controller("todoListCtrl",['$scope','$localStorage',function(
 		$localStorage.todos[1] = {id:1,title:"Hello I am second",importance:2, status:0.3, click:"editTodo(1)"};
 
 		$scope.todos = $localStorage.todos;
-		$scope.addTodo = function(todo)
+		
+		$scope.addTodo = function(todoTitle)
 		{
-			$localStorage.todos[todo.id] = todo;
+			var nextId = $scope.todos.length;
+			$scope.todos[nextId] = {id:nextId,title:todoTitle, importance: 0, status:0,click:"editTodo("+nextId+")"};
 		}
 		
 		$scope.removeTodo = function(todo)
 		{
-			$localStorage.todos.splice(todo.id, 1);
+			$scope.todos.splice(todo.id, 1);
 		}
 		$scope.getProp = function(prop, obj)
 		{
@@ -23,6 +25,6 @@ todoAppControllers.controller("todoListCtrl",['$scope','$localStorage',function(
 		}
 		$scope.editTodo = function(id)
 		{
-			$localStorage.todos[id].title = "Edited!";
+			$scope.todos[id].title = "Edited!";
 		}
 }]);

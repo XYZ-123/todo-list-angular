@@ -1,4 +1,6 @@
 <ul class="todos">
+	<input type="text" ng-model="todoTitle" ng-enter="addTodo(todoTitle)" placeholder="Add new Todo" ng/>
+
 	<li ng-repeat="todo in todos">
 		<p>{{todo.status}}</p>
 		<a class="title" href="#/todo/{{todo.id}}">{{todo.title}}</a>
