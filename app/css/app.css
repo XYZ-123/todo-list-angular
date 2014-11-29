@@ -28,7 +28,7 @@
   content: "";
   padding: 0;
 }
-p.edit:hover
+p.edit:hover, p.remove:hover
 {
 	cursor:pointer;
 }
@@ -37,9 +37,31 @@ p.edit:before
 	content: "";
 	display: block;
 	background-image: url("../img/pencil.png");
-	background-size: 100%;
+	background-size: 90%;
+	background-repeat: no-repeat;
 	height: 30px;
 	width: 30px;
+}
+p.edit:hover:before
+{
+	background-size: 100%;
+	
+}
+p.remove:before
+{
+	content: "";
+	display: block;
+	background-image: url("../img/delete_icon.png");
+	background-size: 100%;
+		background-size: 90%;
+	background-repeat: no-repeat;
+	height: 30px;
+	width: 30px;
+}
+p.remove:hover:before
+{
+	background-size: 100%;
+	
 }
 ul.todos
 {
@@ -62,6 +84,7 @@ ul.todos li p
 	margin: 0 1em;
 }
 ul.todos li p.edit{float:right;}
+ul.todos li p.remove{float:right;}
 ul.todos li a
 {
 line-height: 40px;
