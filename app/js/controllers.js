@@ -5,7 +5,8 @@ todoAppControllers.controller("todoListCtrl",['$scope','$localStorage',function(
 {
 		$localStorage.todos = [];
 		$localStorage.todos[0] = {id:0,inEditingMode:false,isEditing: "isEditing(0)", title:"Hello I am first",importance:1, status:0, edit:"editTodo(0)", remove:"removeTodo(0)"};
-		$localStorage.todos[1] = {id:1,inEditingMode:false,isEditing: "isEditing(1)", title:"Hello I am second",importance:2, status:0.3, edit:"editTodo(1)", remove:"removeTodo(1)"};
+		$localStorage.todos[1] = {id:1,inEditingMode:false,isEditing: "isEditing(1)", title:"Hello I am second",importance:2, status:0.6, edit:"editTodo(1)", remove:"removeTodo(1)"};
+		$localStorage.todos[2] = {id:2,inEditingMode:false,isEditing: "isEditing(2)", title:"Hello I am second",importance:3, status:1, edit:"editTodo(2)", remove:"removeTodo(2)"};
 
 		$scope.todos = $localStorage.todos;
 		
@@ -21,9 +22,14 @@ todoAppControllers.controller("todoListCtrl",['$scope','$localStorage',function(
 			$scope.todos.splice(id, 1);
 		}
 		
-		$scope.updateTodo = function(id, title)
+		$scope.updateTodoTitle = function(id, title)
 		{
 			$scope.todos[id].title = title;
+			$scope.todos[id].inEditingMode = false;
+		}
+		$scope.updateTodoImportance = function(id, importance)
+		{
+			$scope.todos[id].importance = importance;
 			$scope.todos[id].inEditingMode = false;
 		}
 		$scope.getProp = function(prop, obj)

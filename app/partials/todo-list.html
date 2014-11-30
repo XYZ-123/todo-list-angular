@@ -1,13 +1,15 @@
 <ul class="todos">
-	<input type="text" ng-model="todoTitle" ng-enter="addTodo(todoTitle)" value=todoTitle placeholder="Add new Todo" />
+	<input class="new_todo" type="text" ng-model="todoTitle" ng-enter="addTodo(todoTitle)" value=todoTitle placeholder="Add new Todo" />
 
 	<li ng-repeat="todo in todos">
-		<p>{{todo.status}}</p>
-		<input ng-show="isEditing({{todo.id}})" ng-enter="updateTodo({{todo.id}},'{{todo.title}}')" ng-model=todo.title value="{{todo.title}}" "/>
+		<p class="todo_status {{todo.status < 0.5 ? 'red' : todo.status < 0.95 ? 'yellow' : 'green'}}">{{todo.status}}</p>
+		<input ng-show="isEditing({{todo.id}})" ng-enter="updateTodoTitle({{todo.id}},'{{todo.title}}')" ng-model=todo.title value="{{todo.title}}" "/>
 		<a ng-show="!isEditing({{todo.id}})" class="title" href="#/todo/{{todo.id}}">{{todo.title}}</a>
-		<p>{{todo.importance}}</p>
 		
-		<p ng-click="getProp(todo.remove,{todo:todo})" class="remove"><p>
-		<p ng-click="getProp(todo.edit,{todo:todo})" class="edit"><p>
+		
+		<p ng-click="getProp(todo.remove,{todo:todo})" class="remove"></p>
+		<p ng-click="getProp(todo.edit,{todo:todo})" class="edit"></p>
+		<p class="importance"><input class="importance" ng-show="isEditing({{todo.id}})" ng-enter="updateTodoImportance({{todo.id}},'{{todo.importance}}')" ng-model=todo.importance value="{{todo.importance}}" "/></p>
+		<p ng-show="!isEditing({{todo.id}})" class="importance {{todo.importance > 8 ? 'red' : todo.importance > 5 ? 'yellow' : 'green'}}">{{todo.importance}}</p>
 	</li>
 </ul>

@@ -28,6 +28,10 @@
   content: "";
   padding: 0;
 }
+ul.todos li p.edit,ul.todos li  p.remove
+{
+	margin: 0 0.2em;
+}
 p.edit:hover, p.remove:hover
 {
 	cursor:pointer;
@@ -37,14 +41,15 @@ p.edit:before
 	content: "";
 	display: block;
 	background-image: url("../img/pencil.png");
-	background-size: 90%;
+	background-size: 80%;
+			background-position: center;
 	background-repeat: no-repeat;
-	height: 30px;
-	width: 30px;
+	height: 40px;
+	width: 40px;
 }
 p.edit:hover:before
 {
-	background-size: 100%;
+	background-size: 90%;
 	
 }
 p.remove:before
@@ -52,15 +57,15 @@ p.remove:before
 	content: "";
 	display: block;
 	background-image: url("../img/delete_icon.png");
-	background-size: 100%;
-		background-size: 90%;
+		background-size: 80%;
+		background-position: center;
 	background-repeat: no-repeat;
-	height: 30px;
-	width: 30px;
+	height: 40px;
+	width: 40px;
 }
 p.remove:hover:before
 {
-	background-size: 100%;
+	background-size: 90%;
 	
 }
 ul.todos
@@ -69,12 +74,21 @@ ul.todos
 	margin: 50px auto;
 	
 }
+ul.todos input.new_todo
+{
+	margin-bottom: 1em;
+}
 ul.todos li
 {
 	display:block;
 	height: 40px;
 	line-height: 40px;
-	verticak-align: middle;
+	vertical-align: middle;
+	border-bottom: 1px dashed grey;
+}
+ul.todos li:first-of-type
+{
+	border-top: 1px dashed grey;
 }
 ul.todos li p 
 {
@@ -82,13 +96,43 @@ ul.todos li p
 	vertical-align: middle;
 	float:left;
 	margin: 0 1em;
+	min-width: 2em;
+	text-align:center;
+}
+ul.todos li p.todo_status
+{
+	border-left:1px dashed grey;
+	border-right:1px dashed grey;
+}
+ul.todos li p.red
+{
+	color:red;
+}
+ul.todos li p.yellow
+{
+	color:#CCCC00;
+}
+ul.todos li p.green
+{
+	color:green;
+}
+ul.todos li p.importance
+{
+	float:right;
+	border-left:1px dashed grey;
+	border-right:1px dashed grey;
+}
+ul.todos li input.importance
+{
+	width:1em;
+	text-align: center;
 }
 ul.todos li p.edit{float:right;}
 ul.todos li p.remove{float:right;}
 ul.todos li a
 {
-line-height: 40px;
-vertical-align: middle;
+	line-height: 40px;
+	vertical-align: middle;
 	float:left;
 	margin: 0 1em;
 }
