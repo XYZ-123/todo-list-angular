@@ -57,8 +57,8 @@ p.remove:before
 	content: "";
 	display: block;
 	background-image: url("../img/delete_icon.png");
-		background-size: 80%;
-		background-position: center;
+	background-size: 80%;
+	background-position: center;
 	background-repeat: no-repeat;
 	height: 40px;
 	width: 40px;
@@ -103,6 +103,43 @@ ul.todos li p.todo_status
 {
 	border-left:1px dashed grey;
 	border-right:1px dashed grey;
+	position:relative;
+}
+ul.todos li p.first:before
+{
+	content: "";
+	border-right:1px dashed grey;
+	height: 12px;
+	position: absolute;
+	top: -12px;
+	left: -1px;
+}
+ul.todos li p.first:after
+{
+	content: "";
+	border-right:1px dashed grey;
+	height: 12px;
+	position: absolute;
+	top: -12px;
+	right: -1px;
+}
+ul.todos li p.last:before
+{
+	content: "";
+	border-right:1px dashed grey;
+	height: 12px;
+	position: absolute;
+	bottom: -12px;
+	left: -1px;
+}
+ul.todos li p.last:after
+{
+	content: "";
+	border-right:1px dashed grey;
+	height: 12px;
+	position: absolute;
+	bottom: -12px;
+	right: -1px;
 }
 ul.todos li p.red
 {
@@ -121,6 +158,8 @@ ul.todos li p.importance
 	float:right;
 	border-left:1px dashed grey;
 	border-right:1px dashed grey;
+	position: relative;
+	margin-right: 0.4em;
 }
 ul.todos li input.importance
 {
@@ -128,7 +167,30 @@ ul.todos li input.importance
 	text-align: center;
 }
 ul.todos li p.edit{float:right;}
-ul.todos li p.remove{float:right;}
+ul.todos li p.remove{
+float:right;
+border-right:1px dashed grey;
+position:relative;
+margin-right: 1em;
+}
+ul.todos li p.remove_first:after
+{
+	content: "";
+	border-right:1px dashed grey;
+	height: 12px;
+	position: absolute;
+	top: -12px;
+	right: -1px;
+}
+ul.todos li p.remove_last:after
+{
+	content: "";
+	border-right:1px dashed grey;
+	height: 12px;
+	position: absolute;
+	bottom: -12px;
+	right: -1px;
+}
 ul.todos li a
 {
 	line-height: 40px;
