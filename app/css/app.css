@@ -68,7 +68,7 @@ p.remove:hover:before
 	background-size: 90%;
 	
 }
-ul.todos
+ul.todos, ul.subTodos
 {
 	max-width: 30em;
 	margin: 50px auto;
@@ -199,4 +199,69 @@ ul.todos li a
 	float:left;
 	margin: 0 1em;
 }
-
+ul.subTodos li
+{
+	display:block;
+	height: 40px;
+	line-height: 40px;
+	vertical-align: middle;
+	border-bottom: 1px dashed grey;
+	/* background: url("../img/grid_background.png"); */
+}
+ul.subTodos li 
+{
+	display:block;
+	height: 40px;
+	line-height: 40px;
+	vertical-align: middle;
+	border-bottom: 1px dashed grey;
+}
+ul.subTodos li input[type=checkbox]
+{
+	width: 40px;
+	height: 40px;
+	background: none;
+	float:left;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+	border-right: 1px dashed grey;
+	outline: none;
+	text-align:center;
+	position: relative;
+}
+ul.subTodos li input[type=checkbox]:after
+{
+	content:"✔";
+	font-size: 1.4em;
+	text-align: center;
+	line-height: 39px;
+	position: absolute;
+	bottom:0;
+	left: 30%;
+}
+ul.subTodos li input[type=checkbox].completed:after
+{
+	color: green;
+}
+ul.subTodos li input[type=checkbox].incomplete:after
+{
+	color: gray;
+}
+ul.subTodos label.mainTitle
+{
+	display: block;
+	text-align: center;
+}
+ul.subTodos li p
+{
+	vertical-align: middle;
+	float:left;
+	margin: 0 1em;
+	min-width: 2em;
+}
+ul.subTodos li p.edit, ul.subTodos li p.remove
+{
+	float:right;
+}
