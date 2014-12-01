@@ -46,6 +46,18 @@ todoAppControllers.controller("todoListCtrl",['$scope','$localStorage',function(
 		{
 			$scope.todos[id].inEditingMode = !$scope.todos[id].inEditingMode ;
 		}
+		$scope.status = function(id)
+		{
+			var amount = $scope.todos[id].subTodos.length;
+			if (amount == 0)
+				return 0;
+			var completed = 0;
+			for (var i=0; i<$scope.todos[id].subTodos.length;i++)
+			{
+				completed += $scope.todos[id].subTodos[i].done ? 1:0;
+			}
+			return completed/amount;
+		}
 }]);
 
 todoAppControllers.controller("todoDetailsCtrl",['$scope','$localStorage','$routeParams',function($scope, $localStorage, $routeParams)
