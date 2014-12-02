@@ -90,5 +90,14 @@ todoAppControllers.controller("todoDetailsCtrl",['$scope','$localStorage','$rout
 	{
 		$scope.todo.subTodos[id].done = !$scope.todo.subTodos[id].done;
 	}
+	$scope.addSubTodo = function()
+	{
+		var nextId = $scope.todo.subTodos.length;
+		$scope.todo.subTodos[nextId] = {id:nextId, inEditingMode:true, title:"", done:false,completeTodo:"completeTodo("+nextId+")",toggleEdit:"toggleEditMode("+nextId+")", remove:"removeSubTodo("+nextId+")"};
+	}
+	$scope.removeSubTodo = function(id)
+		{
+			$scope.todo.subTodos.splice(id, 1);
+		}
 }]);
 

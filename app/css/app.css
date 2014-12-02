@@ -32,6 +32,10 @@ ul.todos li p.edit,ul.todos li  p.remove
 {
 	margin: 0 0.2em;
 }
+ul.subTodos li p.edit,ul.subTodos li  p.remove
+{
+	margin: 0 0.2em;
+}
 p.edit:hover, p.remove:hover
 {
 	cursor:pointer;
@@ -42,7 +46,7 @@ p.edit:before
 	display: block;
 	background-image: url("../img/pencil.png");
 	background-size: 80%;
-			background-position: center;
+	background-position: center;
 	background-repeat: no-repeat;
 	height: 40px;
 	width: 40px;
@@ -106,7 +110,7 @@ ul.todos li p.todo_status
 	border-right:1px dashed grey;
 	position:relative;
 }
-ul.todos li p.first:before
+p.first:before
 {
 	content: "";
 	border-right:1px dashed grey;
@@ -115,7 +119,7 @@ ul.todos li p.first:before
 	top: -12px;
 	left: -1px;
 }
-ul.todos li p.first:after
+p.first:after
 {
 	content: "";
 	border-right:1px dashed grey;
@@ -124,7 +128,7 @@ ul.todos li p.first:after
 	top: -12px;
 	right: -1px;
 }
-ul.todos li p.last:before
+p.last:before
 {
 	content: "";
 	border-right:1px dashed grey;
@@ -133,7 +137,7 @@ ul.todos li p.last:before
 	bottom: -12px;
 	left: -1px;
 }
-ul.todos li p.last:after
+p.last:after
 {
 	content: "";
 	border-right:1px dashed grey;
@@ -174,7 +178,7 @@ border-right:1px dashed grey;
 position:relative;
 margin-right: 1em;
 }
-ul.todos li p.remove_first:after
+p.remove_first:after
 {
 	content: "";
 	border-right:1px dashed grey;
@@ -183,7 +187,43 @@ ul.todos li p.remove_first:after
 	top: -12px;
 	right: -1px;
 }
-ul.todos li p.remove_last:after
+p.remove_last:after
+{
+	content: "";
+	border-right:1px dashed grey;
+	height: 12px;
+	position: absolute;
+	bottom: -12px;
+	right: -1px;
+}
+p.edit_first:after
+{
+	content: "";
+	border-right:1px dashed grey;
+	height: 12px;
+	position: absolute;
+	top: -12px;
+	left: -1px;
+}
+p.edit_last:after
+{
+	content: "";
+	border-right:1px dashed grey;
+	height: 12px;
+	position: absolute;
+	bottom: -12px;
+	left: -1px;
+}
+input[type=checkbox].first:before
+{
+	content: "";
+	border-right:1px dashed grey;
+	height: 12px;
+	position: absolute;
+	top: -12px;
+	right: -1px;
+}
+input[type=checkbox].last:before
 {
 	content: "";
 	border-right:1px dashed grey;
@@ -249,10 +289,32 @@ ul.subTodos li input[type=checkbox].incomplete:after
 {
 	color: gray;
 }
-ul.subTodos label.mainTitle
+label.mainTitle
 {
 	display: block;
-	text-align: center;
+	padding: 1em 0;
+	font-size: 1.2em;
+	position: relative;
+}
+label.mainTitle:after
+{
+	content:"";
+	background-image: url("../img/green_plus.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 90%;
+	position: absolute;
+	top:1em;
+	right: 1em;
+	width:1.2em;
+	height: 1.2em;
+	opacity: 0.5;
+}
+label.mainTitle:hover:after
+{
+	opacity: 0.9;
+	background-size: 110%;
+	cursor: pointer;
 }
 ul.subTodos li p
 {
@@ -264,4 +326,21 @@ ul.subTodos li p
 ul.subTodos li p.edit, ul.subTodos li p.remove
 {
 	float:right;
+}
+ul.subTodos li:first-of-type
+{
+	border-top: 1px dashed grey;
+}
+
+ul.subTodos li p.remove{
+float:right;
+border-right:1px dashed grey;
+position:relative;
+margin-right: 1em;
+}
+ul.subTodos li p.edit{
+float:right;
+border-left:1px dashed grey;
+position:relative;
+padding-left: 0.4em;
 }

@@ -1,12 +1,12 @@
 <ul class="subTodos">
 		<a href="/app/">Back</a>
-		<label class="mainTitle">{{todo.title}}</label>
+		<label ng-click="addSubTodo()" class="mainTitle">What I got to do: {{todo.title}}</label>
 		<li ng-repeat="subTodo in todo.subTodos">
 			<input type="checkbox" class="{{ $last ? 'last' : $first ? 'first' : '' }} {{subTodo.done ? 'completed' : 'incomplete'}}" ng-click="getProp(subTodo.completeTodo,{subTodo:subTodo})"/>
-			<input ng-show="isInEditMode({{subTodo.id}})" ng-enter="updateTodoTitle({{subTodo.id}},'{{subTodo.title}}')" ng-model=todo.title value="{{subTodo.title}}" "/>
-			<p ng-show="!isInEditMode({{subTodo.id}})" class="title" href="#/todo/{{todo.id}}">{{subTodo.title}}</p>
+			<input ng-show="isInEditMode({{subTodo.id}})" ng-enter="updateTodoTitle({{subTodo.id}},'{{subTodo.title}}')" ng-model=subTodo.title value="{{subTodo.title}}" "/>
+			<p ng-show="!isInEditMode({{subTodo.id}})" class="title" href="#/todo/{{subTodo.id}}">{{subTodo.title}}</p>
 			<p ng-click="getProp(subTodo.remove,{subTodo:subTodo})" class="remove {{ $last ? 'remove_last' : $first ? 'remove_first' : '' }}"></p>
-			<p ng-click="getProp(subTodo.toggleEdit,{subTodo:subTodo})" class="edit"></p>
+			<p ng-click="getProp(subTodo.toggleEdit,{subTodo:subTodo})" class="edit {{ $last ? 'edit_last' : $first ? 'edit_first' : '' }}"></p>
 		</li>
 </ul>
 
