@@ -1,9 +1,9 @@
 <ul class="todos">
 	<input class="new_todo" type="text" ng-model="todoTitle" ng-enter="addTodo(todoTitle)" value=todoTitle placeholder="Add new Todo" />
 
-	<li ng-repeat="todo in todos">
+	<li ng-repeat="todo in todos | filter: '!!'">
 		<p class="todo_status {{ $last ? 'last' : $first ? 'first' : '' }} {{status(todo.id)	< 0.4 ? 'red' : status(todo.id) < 0.95 ? 'yellow' : 'green'}}">{{status(todo.id)}}</p>
-		<input ng-show="isInEditMode({{todo.id}})" ng-enter="updateTodoTitle({{todo.id}},'{{todo.title}}')" ng-model=todo.title value="{{todo.title}}" "/>
+		<input class="inputTitle" ng-show="isInEditMode({{todo.id}})" ng-enter="updateTodoTitle({{todo.id}},'{{todo.title}}')" ng-model=todo.title value="{{todo.title}}" "/>
 		<a ng-show="!isInEditMode({{todo.id}})" class="title" href="#/todo/{{todo.id}}">{{todo.title}}</a>
 		<p ng-click="getProp(todo.remove,{todo:todo})" class="remove {{ $last ? 'remove_last' : $first ? 'remove_first' : '' }}"></p>
 		<p ng-click="getProp(todo.toggleEdit,{todo:todo})" class="edit"></p>

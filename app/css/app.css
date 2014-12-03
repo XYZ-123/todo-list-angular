@@ -101,7 +101,7 @@ ul.todos li p
 	vertical-align: middle;
 	float:left;
 	margin: 0 1em;
-	min-width: 2em;
+	min-width: 2.5em;
 	text-align:center;
 }
 ul.todos li p.todo_status
@@ -343,4 +343,8 @@ float:right;
 border-left:1px dashed grey;
 position:relative;
 padding-left: 0.4em;
+}
+input.inputTitle
+{
+	margin-left: 1em;
 }

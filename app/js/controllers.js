@@ -3,25 +3,29 @@ var todoAppControllers = angular.module('todoAppControllers', ['ngStorage']);
 
 todoAppControllers.controller("todoListCtrl",['$scope','$localStorage',function($scope,$localStorage)
 {
-		$localStorage.todos = [];
-		$localStorage.todos[0] = {id:0,inEditingMode:false, title:"Hello I am first",importance:1, status:0, toggleEdit:"toggleEditMode(0)", remove:"removeTodo(0)", 
-								subTodos:[{id:0,inEditingMode:false, title:"Hello I am first subTodo", importance: 1, done:false, completeTodo:"completeTodo(0)",toggleEdit:"toggleEditMode(0)", remove:"removeSubTodo(0)"},
-								{id:1,inEditingMode:false, title:"Hello I am second subTodo", importance: 1, done:true,completeTodo:"completeTodo(1)", toggleEdit:"toggleEditMode(1)", remove:"removeSubTodo(1)"}]};
-		$localStorage.todos[1] = {id:1,inEditingMode:false, title:"Hello I am second",importance:2, status:0.6, toggleEdit:"toggleEditMode(1)", remove:"removeTodo(1)", subTodos:[]};
-		$localStorage.todos[2] = {id:2,inEditingMode:false,title:"Hello I am second",importance:3, status:1, toggleEdit:"toggleEditMode(2)", remove:"removeTodo(2)", subTodos:[]};
-
+		$localStorage.todos = $localStorage.todos || {};
+		//$localStorage.todos = {};
+		//$localStorage.todos["0"] = {id:0,inEditingMode:false, title:"Hello I am first",importance:1, status:0, toggleEdit:"toggleEditMode(0)", remove:"removeTodo(0)", 
+		//						subTodos:{}};
+		//$localStorage.todos["1"] = {id:1,inEditingMode:false, title:"Hello I am second",importance:2, status:0.6, toggleEdit:"toggleEditMode(1)", remove:"removeTodo(1)", subTodos:{}};
+		//$localStorage.todos["2"] = {id:2,inEditingMode:false,title:"Hello I am second",importance:3, status:1, toggleEdit:"toggleEditMode(2)", remove:"removeTodo(2)", subTodos:{}};
+		//$localStorage.todos["0"].subTodos[0] = {id:0,inEditingMode:false, title:"Hello I am first subTodo", importance: 1, done:false, completeTodo:"completeTodo(0)",toggleEdit:"toggleEditMode(0)", remove:"removeSubTodo(0)"};
+		//$localStorage.todos["0"].subTodos[1] = {id:1,inEditingMode:false, title:"Hello I am second subTodo", importance: 1, done:true,completeTodo:"completeTodo(1)", toggleEdit:"toggleEditMode(1)", remove:"removeSubTodo(1)"}
 		$scope.todos = $localStorage.todos;
-		
+		//console.log($scope.todos);
 		$scope.addTodo = function(todoTitle)
 		{
-			var nextId = $scope.todos.length;
-			$scope.todos[nextId] = {id:nextId,inEditingMode:false, title:todoTitle, importance: 1, status:0,toggleEdit:"toggleEditMode("+nextId+")", remove:"removeTodo("+nextId+")",subTodos:[]};
+			var nextId = Object.keys($scope.todos).length;
+			$scope.todos[nextId] = {id:nextId,inEditingMode:false, title:todoTitle, importance: 1, status:0,toggleEdit:"toggleEditMode("+nextId+")", remove:"removeTodo("+nextId+")",subTodos:{}};
 			$scope.todoTitle = "";
 		}
 		
 		$scope.removeTodo = function(id)
 		{
-			$scope.todos.splice(id, 1);
+			console.log($scope.todos);
+			//$scope.todos.splice(id, 1);
+			delete $scope.todos[id];
+			console.log($scope.todos);
 		}
 		
 		$scope.updateTodoTitle = function(id, title)
@@ -44,26 +48,29 @@ todoAppControllers.controller("todoListCtrl",['$scope','$localStorage',function(
 		}
 		$scope.toggleEditMode = function(id)
 		{
-			$scope.todos[id].inEditingMode = !$scope.todos[id].inEditingMode ;
+			$scope.todos[id].inEditingMode = !$scope.todos[id.toString()].inEditingMode ;
 		}
 		$scope.status = function(id)
 		{
-			var amount = $scope.todos[id].subTodos.length;
+			var amount = 0;
+			var completed = 0;
+			for (var key in $scope.todos[id].subTodos)
+			{
+				if($scope.todos[id].subTodos[key])
+				{
+					amount++;
+					completed += $scope.todos[id].subTodos[key].done ? 1:0;
+				}
+			}
 			if (amount == 0)
 				return 0;
-			var completed = 0;
-			for (var i=0; i<$scope.todos[id].subTodos.length;i++)
-			{
-				completed += $scope.todos[id].subTodos[i].done ? 1:0;
-			}
-			return completed/amount;
+			return Number((completed/amount).toFixed(2));
 		}
 }]);
 
 todoAppControllers.controller("todoDetailsCtrl",['$scope','$localStorage','$routeParams',function($scope, $localStorage, $routeParams)
 {
 	 $scope.todo = $localStorage.todos[$routeParams.todoId];
-	 console.log($scope.todo);
 	 $scope.getProp = function(prop, obj)
 	{
 		return $scope.$eval(prop, obj);
@@ -92,12 +99,17 @@ todoAppControllers.controller("todoDetailsCtrl",['$scope','$localStorage','$rout
 	}
 	$scope.addSubTodo = function()
 	{
-		var nextId = $scope.todo.subTodos.length;
+		for(var key in $scope.todo.subTodos)
+		{
+			if($scope.todo.subTodos[key].inEditingMode)
+				return;
+		}
+		var nextId = Object.keys($scope.todo.subTodos).length;
 		$scope.todo.subTodos[nextId] = {id:nextId, inEditingMode:true, title:"", done:false,completeTodo:"completeTodo("+nextId+")",toggleEdit:"toggleEditMode("+nextId+")", remove:"removeSubTodo("+nextId+")"};
 	}
 	$scope.removeSubTodo = function(id)
 		{
-			$scope.todo.subTodos.splice(id, 1);
+			delete $scope.todo.subTodos[id];
 		}
 }]);
 
