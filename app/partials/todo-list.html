@@ -1,13 +1,19 @@
 <ul class="todos">
-	<input class="new_todo" type="text" ng-model="todoTitle" ng-enter="addTodo(todoTitle)" value=todoTitle placeholder="Add new Todo" />
+	<input class="new_todo" type="text" ng-model="todoTitle" ng-enter="addTodo(todoTitle)" value=todoTitle placeholder="Create new Todo" />
 
 	<li ng-repeat="todo in todos | filter: '!!'">
 		<p class="todo_status {{ $last ? 'last' : $first ? 'first' : '' }} {{status(todo.id)	< 0.4 ? 'red' : status(todo.id) < 0.95 ? 'yellow' : 'green'}}">{{status(todo.id)}}</p>
 		<input class="inputTitle" ng-show="isInEditMode({{todo.id}})" ng-enter="updateTodoTitle({{todo.id}},'{{todo.title}}')" ng-model=todo.title value="{{todo.title}}" "/>
-		<a ng-show="!isInEditMode({{todo.id}})" class="title" href="#/todo/{{todo.id}}">{{todo.title}}</a>
+		<a ng-show="!isInEditMode({{todo.id}})" class="title" href="#/todo/{{todo.id}}">{{todo.title}}<p class="subInfo">({{getAmountOfSubTodos(todo.id)}})</p></a>
 		<p ng-click="getProp(todo.remove,{todo:todo})" class="remove {{ $last ? 'remove_last' : $first ? 'remove_first' : '' }}"></p>
 		<p ng-click="getProp(todo.toggleEdit,{todo:todo})" class="edit"></p>
 		<p class="importance {{ $last ? 'last' : $first ? 'first' : '' }} "><input class="importance" ng-show="isInEditMode({{todo.id}})" ng-enter="updateTodoImportance({{todo.id}},'{{todo.importance}}')" ng-model=todo.importance value="{{todo.importance}}" "/></p>
 		<p ng-show="!isInEditMode({{todo.id}})" class="importance {{ $last ? 'last' : $first ? 'first' : '' }}  {{todo.importance > 8 ? 'red' : todo.importance > 5 ? 'yellow' : 'green'}}">{{todo.importance}}</p>
 	</li>
+	<div class="nav">
+		<a href="active">Active</a>
+		<a href="completed">Completed</a>
+		<input type="button" value ="Clear Completed"/>
+	</div>
 </ul>
+

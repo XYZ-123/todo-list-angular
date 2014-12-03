@@ -50,6 +50,10 @@ todoAppControllers.controller("todoListCtrl",['$scope','$localStorage',function(
 		{
 			$scope.todos[id].inEditingMode = !$scope.todos[id.toString()].inEditingMode ;
 		}
+		$scope.getAmountOfSubTodos = function(id)
+		{
+			return  Object.keys($scope.todos[id].subTodos).length;
+		}
 		$scope.status = function(id)
 		{
 			var amount = 0;

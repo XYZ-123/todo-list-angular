@@ -348,3 +348,11 @@ input.inputTitle
 {
 	margin-left: 1em;
 }
+a.title p.subInfo
+{
+	float:right;
+	font-size: 0.8em;
+	color: grey;
+	display:inline;
+	margin: 0 0.1em;
+}
