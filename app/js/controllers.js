@@ -15,15 +15,21 @@ todoAppControllers.controller("todoListCtrl",['$scope','$localStorage',function(
 		//console.log($scope.todos);
 		$scope.addTodo = function(todoTitle)
 		{
-			var nextId = Object.keys($scope.todos).length;
+			var nextId = $scope.getNextId();
 			$scope.todos[nextId] = {id:nextId,inEditingMode:false, title:todoTitle, importance: 1, status:0,toggleEdit:"toggleEditMode("+nextId+")", remove:"removeTodo("+nextId+")",subTodos:{}};
 			$scope.todoTitle = "";
 		}
-		
+		$scope.getNextId = function()
+		{
+			if(Object.keys( $scope.todos ).length ==0)
+				return 0;
+			var arr = Object.keys( $scope.todos ).map(function ( key ) { return key; });
+			console.log(Math.max.apply( null, arr ));
+			return Number(Math.max.apply( null, arr )) + 1;
+		}
 		$scope.removeTodo = function(id)
 		{
 			console.log($scope.todos);
-			//$scope.todos.splice(id, 1);
 			delete $scope.todos[id];
 			console.log($scope.todos);
 		}
@@ -70,6 +76,16 @@ todoAppControllers.controller("todoListCtrl",['$scope','$localStorage',function(
 				return 0;
 			return Number((completed/amount).toFixed(2));
 		}
+		$scope.clearCompleted = function()
+		{
+			for (var key in $scope.todos)
+			{
+				if($scope.status(key) == 1)
+				{
+						delete $scope.todos[key];
+				}
+			}
+		}
 }]);
 
 todoAppControllers.controller("todoDetailsCtrl",['$scope','$localStorage','$routeParams',function($scope, $localStorage, $routeParams)
@@ -108,12 +124,20 @@ todoAppControllers.controller("todoDetailsCtrl",['$scope','$localStorage','$rout
 			if($scope.todo.subTodos[key].inEditingMode)
 				return;
 		}
-		var nextId = Object.keys($scope.todo.subTodos).length;
+		var nextId = $scope.getNextId();
 		$scope.todo.subTodos[nextId] = {id:nextId, inEditingMode:true, title:"", done:false,completeTodo:"completeTodo("+nextId+")",toggleEdit:"toggleEditMode("+nextId+")", remove:"removeSubTodo("+nextId+")"};
 	}
 	$scope.removeSubTodo = function(id)
 		{
 			delete $scope.todo.subTodos[id];
+		}
+		$scope.getNextId = function()
+		{
+			if(Object.keys( $scope.todo.subTodos ).length ==0)
+				return 0;
+			var arr = Object.keys( $scope.todo.subTodos ).map(function ( key ) { return key; });
+			console.log(Math.max.apply( null, arr ));
+			return Number(Math.max.apply( null, arr )) + 1;
 		}
 }]);
 

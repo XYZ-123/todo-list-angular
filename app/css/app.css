@@ -89,7 +89,6 @@ ul.todos li
 	line-height: 40px;
 	vertical-align: middle;
 	border-bottom: 1px dashed grey;
-	/* background: url("../img/grid_background.png"); */
 }
 ul.todos li:first-of-type
 {
